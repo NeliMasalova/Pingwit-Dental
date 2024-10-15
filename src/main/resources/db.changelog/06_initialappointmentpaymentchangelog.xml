@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create_table_appointment_payment" author="neli">
+        <createTable tableName="appointment_payment">
+            <column name="appointment_id" type="BIGSERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_id" type="BIGSERIAL">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="appointment_payment" baseColumnNames="appointment_id"
+                                 constraintName="fk_appointment_payment_appointment" referencedTableName="appointment"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="appointment_payment" baseColumnNames="payment_id"
+                                 constraintName="fk_appointment_payment_payment"
+                                 referencedTableName="payment" referencedColumnNames="id"/>
+        <addUniqueConstraint tableName="appointment_payment" columnNames="appointment_id, payment_id"
+                             constraintName="uk_appointment_payment"/>
+    </changeSet>
+</databaseChangeLog>

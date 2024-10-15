@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create_appointment_table" author="neli">
+        <createTable tableName="appointment">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_id" type="BIGSERIAL"/>
+            <column name="doctor_id" type="BIGSERIAL"/>
+            <column name="treatment_id" type="BIGSERIAL"/>
+            <column name="payment_id" type="BIGSERIAL"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="patient_id"
+                                 constraintName="appointment_patient_fk" referencedTableName="patient"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="doctor_id"
+                                 constraintName="appointment_doctor_fk" referencedTableName="doctor"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="treatment_id"
+                                 constraintName="appointment_treatment_fk" referencedTableName="treatment"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="appointment" baseColumnNames="payment_id"
+                                 constraintName="appointment_payment_fk" referencedTableName="payment"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

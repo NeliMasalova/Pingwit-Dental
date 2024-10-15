@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create_table_appointment_treatment" author="neli">
+        <createTable tableName="appointment_treatment">
+            <column name="appointment_id" type="BIGSERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="treatment_id" type="BIGSERIAL">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="appointment_treatment" baseColumnNames="appointment_id"
+                                 constraintName="fk_appointment_treatment_appointment" referencedTableName="appointment"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="appointment_treatment" baseColumnNames="treatment_id"
+                                 constraintName="fk_appointment_treatment_treatment"
+                                 referencedTableName="treatment" referencedColumnNames="id"/>
+        <addUniqueConstraint tableName="appointment_treatment" columnNames="appointment_id, treatment_id"
+                             constraintName="uk_appointment_treatment"/>
+    </changeSet>
+</databaseChangeLog>
