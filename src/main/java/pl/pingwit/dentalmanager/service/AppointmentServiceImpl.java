@@ -74,9 +74,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     public Appointment createAppointmentWithPayment(AppointmentDto appointmentDto) {
         Appointment appointment = appointmentConverter.mapToEntity(appointmentDto);
 
-        // Рассчитываем общую сумму
         BigDecimal totalAmount = BigDecimal.ZERO;
-        Set<DentalTreatment> dentalTreatments = appointmentDto.getDentalTreatment(); // Получаем идентификаторы процедур
+        Set<DentalTreatment> dentalTreatments = appointmentDto.getDentalTreatment();
         if (dentalTreatments != null) {
             for (DentalTreatment dentalTreatment : dentalTreatments) {
                 DentalTreatment treatment = dentalTreatmentRepository.findById(dentalTreatment.getId())
@@ -89,13 +88,11 @@ public class AppointmentServiceImpl implements AppointmentService {
         payment.setName(appointmentDto.getPayment().getName());
         payment.setDate(appointmentDto.getPayment().getDate());
         payment.setTypePayment(appointmentDto.getPayment().getTypePayment());
-        payment.setAmount(totalAmount); // Устанавливаем рассчитанную сумму
+        payment.setAmount(totalAmount);
 
-        // Сохраняем платеж в базе данных
         Payment savedPayment = paymentRepository.save(payment);
-        appointment.setPayment(savedPayment); // Ассоциируем платеж с приемом
+        appointment.setPayment(savedPayment);
 
-        // Сохраняем новый прием в базе данных
         return appointmentRepository.save(appointment);
     }
 }

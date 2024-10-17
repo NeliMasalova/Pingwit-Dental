@@ -43,16 +43,16 @@ public class AppointmentConverter {
         appointment.setDate(inputDto.getDate());
         appointment.setAppointmentStatus(inputDto.getAppointmentStatus());
 
-        Patient patient = patientRepository.findById(inputDto.getPatient().getId()).
-                orElseThrow(()-> new NotFoundException("Patient with such id doesn't found. Please, try again."));
-        Doctor doctor = doctorRepository.findById(inputDto.getDoctor().getId()).
-                orElseThrow(()-> new NotFoundException("Doctor with such id doesn't found. Please, try again."));
+//        Patient patient = patientRepository.findById(inputDto.getPatient().getId()).
+//                orElseThrow(()-> new NotFoundException("Patient with such id doesn't found. Please, try again."));
+//        Doctor doctor = doctorRepository.findById(inputDto.getDoctor().getId()).
+//                orElseThrow(()-> new NotFoundException("Doctor with such id doesn't found. Please, try again."));
         Set<DentalTreatment> dentalTreatments = inputDto.getDentalTreatment().stream()
                 .map(treatmentDto -> dentalTreatmentRepository.findById(treatmentDto.getId()).orElseThrow())
                 .collect(Collectors.toSet());
-        appointment.setPatient(patient);
-        appointment.setDoctor(doctor);
-        appointment.setDentalTreatments(dentalTreatments);
+        appointment.setPatient(inputDto.getPatient());
+        appointment.setDoctor(inputDto.getDoctor());
+        appointment.setDentalTreatments(inputDto.getDentalTreatment());
 
         return appointment;
     }

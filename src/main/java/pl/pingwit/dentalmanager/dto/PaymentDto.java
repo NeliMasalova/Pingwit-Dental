@@ -1,7 +1,6 @@
 package pl.pingwit.dentalmanager.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import pl.pingwit.dentalmanager.entity.Appointment;
 import pl.pingwit.dentalmanager.entity.TypePayment;
 
 import java.math.BigDecimal;

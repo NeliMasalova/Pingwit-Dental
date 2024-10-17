@@ -2,7 +2,6 @@ package pl.pingwit.dentalmanager.converter;
 
 import org.springframework.stereotype.Component;
 import pl.pingwit.dentalmanager.dto.PaymentDto;
-import pl.pingwit.dentalmanager.entity.Appointment;
 import pl.pingwit.dentalmanager.entity.Payment;
 import pl.pingwit.dentalmanager.repository.AppointmentRepository;
 
