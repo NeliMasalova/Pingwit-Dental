@@ -28,6 +28,9 @@ public class DentalTreatment {
     @ManyToMany(mappedBy = "dentalTreatments")
     private Set<Appointment> appointments = new HashSet<>();
 
+    public DentalTreatment(long l, String s, String s1, BigDecimal bigDecimal) {
+    }
+
     public Set<Appointment> getAppointments() {
         return appointments;
     }

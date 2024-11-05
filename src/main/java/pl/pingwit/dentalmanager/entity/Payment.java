@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -25,7 +24,7 @@ public class Payment {
     private Long id;
     @Column(name = "name")
     private String name;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "appointment_id", referencedColumnName = "id")
     private Appointment appointment;
     @Column(name = "date")
@@ -39,16 +38,8 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(Long id, String name, Appointment appointment, LocalDate date, TypePayment typePayment, BigDecimal amount) {
+    public Payment(Long id) {
         this.id = id;
-        this.name = name;
-        this.appointment = appointment;
-        this.date = date;
-        this.typePayment = typePayment;
-        this.amount = amount;
-    }
-
-    public Payment(String name, Appointment appointment, LocalDate date, TypePayment typePayment) {
     }
 
     public Long getId() {

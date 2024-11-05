@@ -12,11 +12,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,14 +31,14 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private AppointmentStatus appointmentStatus;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_id")
     private Payment payment;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
     @ManyToMany
@@ -50,6 +48,18 @@ public class Appointment {
             inverseJoinColumns = @JoinColumn(name = "treatment_id")
     )
     private Set<DentalTreatment> dentalTreatments = new HashSet<>();
+
+    public Appointment() {
+    }
+
+    public Appointment(Long id, LocalDate date, AppointmentStatus appointmentStatus, Payment payment, Patient patient, Doctor doctor) {
+        this.id = id;
+        this.date = date;
+        this.appointmentStatus = appointmentStatus;
+        this.payment = payment;
+        this.patient = patient;
+        this.doctor = doctor;
+    }
 
     public Long getId() {
         return id;
