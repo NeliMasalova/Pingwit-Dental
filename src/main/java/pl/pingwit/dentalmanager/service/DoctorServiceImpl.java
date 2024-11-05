@@ -8,6 +8,7 @@ import pl.pingwit.dentalmanager.exceptionhandling.NotFoundException;
 import pl.pingwit.dentalmanager.repository.DoctorRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -37,14 +38,20 @@ public class DoctorServiceImpl implements DoctorService {
         Doctor doctor = doctorRepository.findById(id).
                 orElseThrow(() -> new NotFoundException("Doctor with such id not found! Please, try again."));
         return doctorConverter.convertToDto(doctor);
-
     }
 
     @Override
     public void deleteDoctor(Long id) {
         doctorRepository.deleteById(id);
     }
-
+    public void printDoctorName(Long doctorId) {
+        Optional<Doctor> doctor = doctorRepository.findById(doctorId);
+        if (doctor.isPresent()) {
+            System.out.println(doctor.get().getName());
+        } else {
+            System.out.println("Doctor not found");
+        }
+    }
     @Override
     public void updateDoctorRate(Long id, Doctor inputDto) {
         Doctor doctor = doctorRepository.findById(id).
@@ -67,4 +74,6 @@ public class DoctorServiceImpl implements DoctorService {
         }
         doctorRepository.save(doctor);
     }
+
+
 }

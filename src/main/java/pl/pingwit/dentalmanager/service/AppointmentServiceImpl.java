@@ -1,13 +1,12 @@
 package pl.pingwit.dentalmanager.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.pingwit.dentalmanager.converter.AppointmentConverter;
 import pl.pingwit.dentalmanager.dto.AppointmentDto;
-import pl.pingwit.dentalmanager.dto.PaymentDto;
+import pl.pingwit.dentalmanager.dto.DentalTreatmentDto;
 import pl.pingwit.dentalmanager.entity.Appointment;
 import pl.pingwit.dentalmanager.entity.DentalTreatment;
-import pl.pingwit.dentalmanager.entity.Doctor;
-import pl.pingwit.dentalmanager.entity.Patient;
 import pl.pingwit.dentalmanager.entity.Payment;
 import pl.pingwit.dentalmanager.exceptionhandling.NotFoundException;
 import pl.pingwit.dentalmanager.repository.AppointmentRepository;
@@ -17,7 +16,6 @@ import pl.pingwit.dentalmanager.repository.PatientRepository;
 import pl.pingwit.dentalmanager.repository.PaymentRepository;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -51,13 +49,6 @@ public class AppointmentServiceImpl implements AppointmentService {
         return appointmentConverter.mapToDto(appointment);
     }
 
-//    @Override
-//    public Long createAppointment(AppointmentDto inputDto) {
-//        Appointment appointment = appointmentConverter.mapToEntity(inputDto);
-//        Appointment savedAppointment = appointmentRepository.save(appointment);
-//        return savedAppointment.getId();
-//    }
-
     @Override
     public void deleteAppointment(Long id) {
         appointmentRepository.deleteById(id);
@@ -69,15 +60,15 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .map(appointmentConverter::mapToDto)
                 .toList();
     }
-
     @Override
+    @Transactional
     public Appointment createAppointmentWithPayment(AppointmentDto appointmentDto) {
         Appointment appointment = appointmentConverter.mapToEntity(appointmentDto);
 
         BigDecimal totalAmount = BigDecimal.ZERO;
-        Set<DentalTreatment> dentalTreatments = appointmentDto.getDentalTreatment();
+        Set<DentalTreatmentDto> dentalTreatments = appointmentDto.getDentalTreatment();
         if (dentalTreatments != null) {
-            for (DentalTreatment dentalTreatment : dentalTreatments) {
+            for (DentalTreatmentDto dentalTreatment : dentalTreatments) {
                 DentalTreatment treatment = dentalTreatmentRepository.findById(dentalTreatment.getId())
                         .orElseThrow(() -> new NotFoundException("Dental treatment with such id doesn't exist."));
                 totalAmount = totalAmount.add(treatment.getPrice());
@@ -89,14 +80,9 @@ public class AppointmentServiceImpl implements AppointmentService {
         payment.setDate(appointmentDto.getPayment().getDate());
         payment.setTypePayment(appointmentDto.getPayment().getTypePayment());
         payment.setAmount(totalAmount);
+        payment = paymentRepository.save(payment);
 
-        Payment savedPayment = paymentRepository.save(payment);
-        appointment.setPayment(savedPayment);
-
+        appointment.setPayment(payment);
         return appointmentRepository.save(appointment);
     }
 }
-//    @PostConstruct
-//    private void init() {
-//        System.out.println(".");
-//    }

@@ -7,5 +7,5 @@ import java.util.List;
 public interface PaymentService {
     List<PaymentDto> paymentList();
 
-//    Long createPayment(PaymentDto inputDto);
+    void deletePaymentById(Long id);
 }
