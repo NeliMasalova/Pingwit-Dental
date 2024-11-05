@@ -8,6 +8,7 @@ import pl.pingwit.dentalmanager.entity.DentalTreatment;
 public class DentalTreatmentConverter {
     public DentalTreatmentDto convertToDto(DentalTreatment treatment) {
         return new DentalTreatmentDto(
+                treatment.getId(),
                 treatment.getName(),
                 treatment.getDescription(),
                 treatment.getPrice());
@@ -15,6 +16,7 @@ public class DentalTreatmentConverter {
 
     public DentalTreatment convertToEntity(DentalTreatmentDto inputDto) {
         DentalTreatment dentalTreatment = new DentalTreatment();
+        dentalTreatment.setId(inputDto.getId());
         dentalTreatment.setName(inputDto.getName());
         dentalTreatment.setDescription(inputDto.getDescription());
         dentalTreatment.setPrice(inputDto.getPrice());
