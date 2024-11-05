@@ -11,6 +11,9 @@ public class CreatePatientInputDto {
     private String phone;
     private String address;
 
+    public CreatePatientInputDto(String barbara, String smyk, LocalDate of, String mail, String number, String s) {
+    }
+
     public String getName() {
         return name;
     }

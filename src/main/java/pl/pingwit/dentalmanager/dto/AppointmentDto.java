@@ -1,9 +1,6 @@
 package pl.pingwit.dentalmanager.dto;
 
 import pl.pingwit.dentalmanager.entity.AppointmentStatus;
-import pl.pingwit.dentalmanager.entity.DentalTreatment;
-import pl.pingwit.dentalmanager.entity.Doctor;
-import pl.pingwit.dentalmanager.entity.Patient;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -12,24 +9,13 @@ public class AppointmentDto {
     private Long id;
     private LocalDate date;
     private AppointmentStatus appointmentStatus;
-    private Patient patient;
-    private Doctor doctor;
-    private Set<DentalTreatment> dentalTreatment;
+    private PatientDto patient;
+    private DoctorDto doctor;
+    private Set<DentalTreatmentDto> dentalTreatment;
     private PaymentDto payment;
 
     public AppointmentDto() {
     }
-
-    public AppointmentDto(Long id, LocalDate date, AppointmentStatus appointmentStatus, Patient patient, Doctor doctor, Set<DentalTreatment> dentalTreatment, PaymentDto payment) {
-        this.id = id;
-        this.date = date;
-        this.appointmentStatus = appointmentStatus;
-        this.patient = patient;
-        this.doctor = doctor;
-        this.dentalTreatment = dentalTreatment;
-        this.payment = payment;
-    }
-
     public Long getId() {
         return id;
     }
@@ -54,27 +40,27 @@ public class AppointmentDto {
         this.appointmentStatus = appointmentStatus;
     }
 
-    public Patient getPatient() {
+    public PatientDto getPatient() {
         return patient;
     }
 
-    public void setPatient(Patient patient) {
+    public void setPatient(PatientDto patient) {
         this.patient = patient;
     }
 
-    public Doctor getDoctor() {
+    public DoctorDto getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(DoctorDto doctor) {
         this.doctor = doctor;
     }
 
-    public Set<DentalTreatment> getDentalTreatment() {
+    public Set<DentalTreatmentDto> getDentalTreatment() {
         return dentalTreatment;
     }
 
-    public void setDentalTreatment(Set<DentalTreatment> dentalTreatment) {
+    public void setDentalTreatment(Set<DentalTreatmentDto> dentalTreatment) {
         this.dentalTreatment = dentalTreatment;
     }
 

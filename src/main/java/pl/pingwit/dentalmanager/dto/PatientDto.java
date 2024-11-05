@@ -11,15 +11,6 @@ public class PatientDto {
 
     public PatientDto() {
     }
-
-    public PatientDto(Long id, String name, String surname, LocalDate birthdate, String phone) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.birthdate = birthdate;
-        this.phone = phone;
-    }
-
     public Long getId() {
         return id;
     }
