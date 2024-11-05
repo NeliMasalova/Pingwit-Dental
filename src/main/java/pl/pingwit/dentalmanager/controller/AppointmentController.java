@@ -32,10 +32,6 @@ public class AppointmentController {
         return appointmentService.getAppointmentByPatientId(patientId);
     }
 
-//    @PostMapping
-//    public Long createAppointment(@RequestBody AppointmentDto inputDto) {
-//        return appointmentService.createAppointment(inputDto);
-//    }
     @PostMapping("/with-payment")
     public Appointment createAppointmentWithPayment(@RequestBody AppointmentDto appointmentDTO) {
         return appointmentService.createAppointmentWithPayment(appointmentDTO);
