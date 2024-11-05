@@ -1,6 +1,8 @@
 package pl.pingwit.dentalmanager.controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.pingwit.dentalmanager.dto.PaymentDto;
@@ -22,8 +24,11 @@ public class PaymentController {
         return paymentService.paymentList();
     }
 
-//    @PostMapping(consumes = "application/json")
-//    public Long createPayment(@RequestBody PaymentDto paymentDto) {
-//        return paymentService.createPayment(paymentDto);
-//    }
+    @DeleteMapping("/{id}")
+    public void deletePaymentById(@PathVariable(name = "id") Long id) {
+        paymentService.deletePaymentById(id);
+
+    }
+
+
 }
