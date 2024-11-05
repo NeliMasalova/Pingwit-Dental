@@ -1,5 +1,6 @@
 package pl.pingwit.dentalmanager.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,16 +21,19 @@ public class DentalTreatmentController {
         this.dentalTreatmentService = dentalTreatmentService;
     }
 
+    @Operation(summary = "Find treatment by ID", description = "Returns a DentalTreatmentDto object based on ID")
     @GetMapping("/{id}")
     public DentalTreatmentDto findTreatmentById(@PathVariable(name = "id") Long id) {
         return dentalTreatmentService.findTreatmentById(id);
     }
 
+    @Operation(summary = "Find all treatments", description = "Returns a list of DentalTreatmentDto objects")
     @GetMapping
     public List<DentalTreatmentDto> listTreatments() {
         return dentalTreatmentService.listTreatments();
     }
 
+    @Operation(summary = "Create treatment", description = "Returns a new DentalTreatmentDto object")
     @PostMapping
     public Long createTreatment(@RequestBody DentalTreatmentDto inputDto) {
         return dentalTreatmentService.createTreatment(inputDto);
