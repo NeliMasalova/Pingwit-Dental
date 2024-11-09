@@ -2,13 +2,13 @@ package pl.pingwit.dentalmanager.dto;
 
 import java.time.LocalDate;
 
-public class PatientShortDto {
+public class PatientShortDto { // не уверен в необходимости этого класса, по сути только поля id нету
     private String name;
     private String surname;
     private LocalDate birthdate;
     private String phone;
 
-    public PatientShortDto() {
+    public PatientShortDto() { // Constructor 'PatientShortDto()' is never used
     }
 
     public PatientShortDto(String name, String surname, LocalDate birthdate, String phone) {

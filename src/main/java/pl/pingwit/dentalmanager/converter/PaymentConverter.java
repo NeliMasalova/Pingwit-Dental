@@ -3,7 +3,7 @@ package pl.pingwit.dentalmanager.converter;
 import org.springframework.stereotype.Component;
 import pl.pingwit.dentalmanager.dto.PaymentDto;
 import pl.pingwit.dentalmanager.entity.Payment;
-import pl.pingwit.dentalmanager.repository.AppointmentRepository;
+import pl.pingwit.dentalmanager.repository.AppointmentRepository; // лишний импорт
 
 @Component
 public class PaymentConverter {
@@ -17,5 +17,5 @@ public class PaymentConverter {
         return paymentDto;
     }
 
-
+// лишняя строка, удали
 }

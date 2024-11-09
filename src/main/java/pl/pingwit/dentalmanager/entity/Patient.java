@@ -41,6 +41,7 @@ public class Patient {
         this.address = address;
     }
 
+    // этот конструктор ничего не делает + название аргументов так себе
     public Patient(long l, String barbara, String smyk, LocalDate of, String mail, String number, String s) {
     }
 

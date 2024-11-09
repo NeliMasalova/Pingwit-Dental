@@ -67,20 +67,20 @@ public class AppointmentServiceImpl implements AppointmentService {
 
         BigDecimal totalAmount = BigDecimal.ZERO;
         Set<DentalTreatmentDto> dentalTreatments = appointmentDto.getDentalTreatment();
-        if (dentalTreatments != null) {
-            for (DentalTreatmentDto dentalTreatment : dentalTreatments) {
+        if (dentalTreatments != null) { // замени на CollectionUtils.isNotEmpty(dentalTreatments)
+            for (DentalTreatmentDto dentalTreatment : dentalTreatments) { // я еще не смотрел, но если у тебя верно настроен foreignKey, то не даст сохранить appointment с несуществующим treatment, получается двойная работа
                 DentalTreatment treatment = dentalTreatmentRepository.findById(dentalTreatment.getId())
                         .orElseThrow(() -> new NotFoundException("Dental treatment with such id doesn't exist."));
                 totalAmount = totalAmount.add(treatment.getPrice());
             }
         }
 
-        Payment payment = new Payment();
+        Payment payment = new Payment(); // этот кусок кода в PaymentConverter и из AppointmentConverter вызываешь конвертацию paymentConverter.toEntity()
         payment.setName(appointmentDto.getPayment().getName());
         payment.setDate(appointmentDto.getPayment().getDate());
         payment.setTypePayment(appointmentDto.getPayment().getTypePayment());
         payment.setAmount(totalAmount);
-        payment = paymentRepository.save(payment);
+        payment = paymentRepository.save(payment); // это строку удаляем, а чтобы работало в Appointment оставил комментарий
 
         appointment.setPayment(payment);
         return appointmentRepository.save(appointment);

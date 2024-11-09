@@ -8,6 +8,7 @@ import java.util.List;
 public interface AppointmentService {
     AppointmentDto getAppointmentByPatientId(Long patientId);
 
+    // это уже версия близкая к финальной, поэтому закомментированные методы лучше удалять
 //    Long createAppointment(AppointmentDto inputDto);
 
     void deleteAppointment(Long id);

@@ -51,7 +51,7 @@ public class DoctorServiceImpl implements DoctorService {
         } else {
             System.out.println("Doctor not found");
         }
-    }
+    }// абзац
     @Override
     public void updateDoctorRate(Long id, Doctor inputDto) {
         Doctor doctor = doctorRepository.findById(id).
@@ -75,5 +75,5 @@ public class DoctorServiceImpl implements DoctorService {
         doctorRepository.save(doctor);
     }
 
-
+// лишняя строка, удали
 }

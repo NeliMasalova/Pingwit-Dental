@@ -10,7 +10,7 @@ public class PatientDto {
     private String phone;
 
     public PatientDto() {
-    }
+    }// добавь абзац
     public Long getId() {
         return id;
     }

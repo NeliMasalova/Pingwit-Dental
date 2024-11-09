@@ -11,6 +11,10 @@ public class CreatePatientInputDto {
     private String phone;
     private String address;
 
+    /*
+     1. Этот конструктор ничего не делает и он используется у тебя в PatientConverterTest. Скорее всего тест неверно работает
+     2. String barbara, String smyk - жертвы рефакторинга
+     */
     public CreatePatientInputDto(String barbara, String smyk, LocalDate of, String mail, String number, String s) {
     }
 

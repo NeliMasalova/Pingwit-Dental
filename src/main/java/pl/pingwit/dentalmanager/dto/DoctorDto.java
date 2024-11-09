@@ -7,7 +7,7 @@ public class DoctorDto {
     private String specialty;
     private String phone;
     private Double rate;
-    private long id;
+    private long id; // поле ид лучше первым ставить + сделай его Long, а не long
 
     public DoctorDto(String name, String surname, String specialty, String phone, Double rate) {
         this.name = name;

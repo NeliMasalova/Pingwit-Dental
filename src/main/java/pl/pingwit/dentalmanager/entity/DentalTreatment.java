@@ -28,6 +28,10 @@ public class DentalTreatment {
     @ManyToMany(mappedBy = "dentalTreatments")
     private Set<Appointment> appointments = new HashSet<>();
 
+    /*
+    1. этот конструктор ничего не делает + используется в AppointmentConverterTest. Скорее всего тест некорректный
+    2. Названия аргументов лучше поправить
+     */
     public DentalTreatment(long l, String s, String s1, BigDecimal bigDecimal) {
     }
 

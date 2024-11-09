@@ -29,8 +29,9 @@ public class Doctor {
     @Column(name = "rate")
     private Double rate;
     @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
-    private List<Appointment> appointments;
+    private List<Appointment> appointments; // нету геттера/сеттера
 
+    // этот конструктор нигде не используется, может удалим?
     public Doctor(String name, String surname, String phone, String specialty, Double rate) {
     }
 

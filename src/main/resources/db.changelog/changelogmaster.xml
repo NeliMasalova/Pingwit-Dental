@@ -4,12 +4,12 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include file="db.changelog/00_initialpatientchangelog.xml"/>
-    <include file="db.changelog/01_initialdoctorchangelog.xml"/>
-    <include file="db.changelog/03_initialtreatmenthangelog.xml"/>
-    <include file="db.changelog/02_initialpaymentchangelog.xml"/>
-    <include file="db.changelog/04_initialappointmentchangelog.xml"/>
-    <include file="db.changelog/05_initialappointmenttreatmentchangelog.xml"/>
-    <include file="db.changelog/06_initialappointmentpaymentchangelog.xml"/>
+    <include file="db.changelog/00_initialpatientchangelog.xml"/><!--00_initialpatientchangelog -> 00_initial_patient_changelog или camelCase. Неудобночитатьполучается, верно ?:)-->
+    <include file="db.changelog/01_initialdoctorchangelog.xml"/><!--пример выше-->
+    <include file="db.changelog/03_initialtreatmenthangelog.xml"/><!--пример выше-->
+    <include file="db.changelog/02_initialpaymentchangelog.xml"/><!--пример выше-->
+    <include file="db.changelog/04_initialappointmentchangelog.xml"/><!--пример выше-->
+    <include file="db.changelog/05_initialappointmenttreatmentchangelog.xml"/><!--пример выше-->
+    <include file="db.changelog/06_initialappointmentpaymentchangelog.xml"/><!--пример выше-->
 
 </databaseChangeLog>

@@ -17,6 +17,7 @@ public class PaymentDto {
     public PaymentDto() {
     }
 
+    // этот конструктор нигде не используется, может удалим?
     public PaymentDto(Long id, String name, LocalDate date, TypePayment typePayment, BigDecimal amount) {
         this.id = id;
         this.name = name;

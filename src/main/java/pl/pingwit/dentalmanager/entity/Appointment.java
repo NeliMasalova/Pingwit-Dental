@@ -32,6 +32,7 @@ public class Appointment {
     @Column(name = "status")
     private AppointmentStatus appointmentStatus;
     @OneToOne(fetch = FetchType.EAGER)
+//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) - таким образом ты будешь сохранять, обновлять, удалять связанные сущность одним вызовом save. Я скоро добавлю видео про каскады
     @JoinColumn(name = "payment_id")
     private Payment payment;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -52,6 +53,7 @@ public class Appointment {
     public Appointment() {
     }
 
+    // этот конструктор нигде не используется, может удалим?
     public Appointment(Long id, LocalDate date, AppointmentStatus appointmentStatus, Payment payment, Patient patient, Doctor doctor) {
         this.id = id;
         this.date = date;
